@@ -11,19 +11,20 @@ import android.widget.TextView;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.BindViews;
 import butterknife.ButterKnife;
 import homepunk.alternativeresolutions.R;
 import homepunk.alternativeresolutions.presentation.viewmodels.Criteria;
 import homepunk.alternativeresolutions.presentation.viewmodels.CriteriaValuation;
-import homepunk.alternativeresolutions.presentation.viewmodels.Valuations;
+import homepunk.alternativeresolutions.presentation.utils.interfaces.Valuations;
 
-import static homepunk.alternativeresolutions.presentation.viewmodels.Valuations.VALUATION_BAD;
-import static homepunk.alternativeresolutions.presentation.viewmodels.Valuations.VALUATION_BETTER;
-import static homepunk.alternativeresolutions.presentation.viewmodels.Valuations.VALUATION_GOOD;
-import static homepunk.alternativeresolutions.presentation.viewmodels.Valuations.VALUATION_NORMAL;
-import static homepunk.alternativeresolutions.presentation.viewmodels.Valuations.VALUATION_THE_BEST;
-import static homepunk.alternativeresolutions.presentation.viewmodels.Valuations.VALUATION_THE_WORST;
-import static homepunk.alternativeresolutions.presentation.viewmodels.Valuations.VALUATION_WORSE;
+import static homepunk.alternativeresolutions.presentation.utils.interfaces.Valuations.VALUATION_BAD;
+import static homepunk.alternativeresolutions.presentation.utils.interfaces.Valuations.VALUATION_BETTER;
+import static homepunk.alternativeresolutions.presentation.utils.interfaces.Valuations.VALUATION_GOOD;
+import static homepunk.alternativeresolutions.presentation.utils.interfaces.Valuations.VALUATION_NORMAL;
+import static homepunk.alternativeresolutions.presentation.utils.interfaces.Valuations.VALUATION_THE_BEST;
+import static homepunk.alternativeresolutions.presentation.utils.interfaces.Valuations.VALUATION_THE_WORST;
+import static homepunk.alternativeresolutions.presentation.utils.interfaces.Valuations.VALUATION_WORSE;
 
 /**
  * Created by Homepunk on 12.06.2017.
@@ -48,6 +49,7 @@ public class CriteriaLayout extends LinearLayout {
     protected TextView criteriaNameTV;
 
     private Criteria criteria;
+    private OnCriteriaValuationClickListener onCriteriaValuationClickListener;
 
     public CriteriaLayout(Context context) {
         super(context);
@@ -67,6 +69,12 @@ public class CriteriaLayout extends LinearLayout {
     private void init(Context context) {
         View root = LayoutInflater.from(context).inflate(R.layout.item_criteria, this);
         ButterKnife.bind(this, root);
+        valuationTheWorst.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     @Override
@@ -78,6 +86,10 @@ public class CriteriaLayout extends LinearLayout {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
+    }
+
+    public void setOnCriteriaValuationClickListener(OnCriteriaValuationClickListener onCriteriaValuationClickListener) {
+        this.onCriteriaValuationClickListener = onCriteriaValuationClickListener;
     }
 
     public void setCriteria(Criteria criteria) {
@@ -191,6 +203,8 @@ public class CriteriaLayout extends LinearLayout {
                     }
                 }
             }
+
+            criteriaNameTV.setText(criteria.getName() + criteria.getIndex());
         }
     }
 }

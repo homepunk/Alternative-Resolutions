@@ -21,6 +21,7 @@ import butterknife.ButterKnife;
 import homepunk.alternativeresolutions.R;
 import homepunk.alternativeresolutions.presentation.base.BaseApp;
 import homepunk.alternativeresolutions.presentation.custom.CriteriaLayout;
+import homepunk.alternativeresolutions.presentation.custom.OnCriteriaValuationClickListener;
 import homepunk.alternativeresolutions.presentation.presenter.intefaces.CriteriasPresenter;
 import homepunk.alternativeresolutions.presentation.view.CriteriasView;
 import homepunk.alternativeresolutions.presentation.viewmodels.Criteria;
@@ -34,10 +35,10 @@ public class CriteriasActivity extends AppCompatActivity implements CriteriasVie
 
     @BindView(R.id.criterias_linear_layout)
     LinearLayout criteriasLayout;
-    @BindView(R.id.activity_criterias_criterias_container)
-    LinearLayout criteriasContainer;
     @BindView(R.id.criterias_quantity_spinner)
     Spinner criteriasQuantitySpinner;
+
+    private List<CriteriaLayout> criteriaLayouts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,27 +68,23 @@ public class CriteriasActivity extends AppCompatActivity implements CriteriasVie
 
     @Override
     public void removeCriteria(int index) {
-
+        CriteriaLayout criteriaLayout = criteriaLayouts.get(index);
+        criteriasLayout.removeView(criteriaLayout);
     }
 
     @Override
     public void addCriteria(Criteria criteria) {
-        View criteriaContainer = inflater.inflate(R.layout.item_criteria, null, false);
-        CriteriaLayout criteriaLayout = new CriteriaLayout(this);
+        final CriteriaLayout criteriaLayout = new CriteriaLayout(this);
         criteriaLayout.setCriteria(criteria);
+        criteriaLayout.setOnCriteriaValuationClickListener(new OnCriteriaValuationClickListener() {
+            @Override
+            public void onCriteriaClick(Criteria criteria) {
 
+            }
+        });
+
+        criteriaLayouts.add(criteriaLayout);
         criteriasLayout.addView(criteriaLayout);
-
-
-        View valuationsContainer = ButterKnife.findById(this, R.id.item_criteria_valuations_container);
-
-//
-//        addCriteriaValuation(valuationsContainer, "k11");
-//        addCriteriaValuation(valuationsContainer, "k12");
-//        addCriteriaValuation(valuationsContainer, "k13");
-//        addCriteriaValuation(valuationsContainer, "k14");
-
-
     }
 
     public void addCriteriaValuation(View parentContainer, String index) {
@@ -103,6 +100,7 @@ public class CriteriasActivity extends AppCompatActivity implements CriteriasVie
         ButterKnife.bind(this);
         BaseApp.getBaseComponent().inject(this);
         presenter.init(this);
+        criteriaLayouts = new ArrayList<>();
     }
 
     private void initUI() {

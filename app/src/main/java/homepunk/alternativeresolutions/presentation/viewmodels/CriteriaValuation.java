@@ -1,5 +1,7 @@
 package homepunk.alternativeresolutions.presentation.viewmodels;
 
+import homepunk.alternativeresolutions.presentation.utils.interfaces.Valuations;
+
 /**
  * Created by Homepunk on 06.06.2017.
  **/

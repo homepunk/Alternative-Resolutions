@@ -8,30 +8,24 @@ import java.util.ArrayList;
 
 public class Criteria {
     private String name;
+    private int index;
     private ArrayList<CriteriaValuation> criteriaValuations;
 
     public Criteria() {
+        name = "K";
         criteriaValuations = new ArrayList<>();
-    }
-
-    public Criteria(String name) {
-        this.name = name;
-    }
-
-    public Criteria(CriteriaValuation... criteriaValuations) {
-        this.criteriaValuations = new ArrayList<>();
-
-        for (CriteriaValuation criteriaValuation : criteriaValuations) {
-            this.criteriaValuations.add(criteriaValuation);
-        }
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 
     public ArrayList<CriteriaValuation> getCriteriaValuations() {
@@ -43,13 +37,11 @@ public class Criteria {
     }
 
     public void addCriteriaValuation(CriteriaValuation criteriaValuation) {
-        if (criteriaValuations != null) {
             criteriaValuations.add(criteriaValuation);
-        }
     }
 
     public void removeCriteriaValuation(CriteriaValuation criteriaValuation) {
-        if (criteriaValuations != null) {
+        if (criteriaValuations.size() > 0) {
             criteriaValuations.remove(criteriaValuation);
         }
     }
