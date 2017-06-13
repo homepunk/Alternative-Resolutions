@@ -1,6 +1,8 @@
 package homepunk.alternativeresolutions.presentation.viewmodels;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by Homepunk on 06.06.2017.
@@ -9,15 +11,26 @@ import java.util.ArrayList;
 public class Criteria {
     private String name;
     private int index;
-    private ArrayList<CriteriaValuation> criteriaValuations;
+    private List<Valuation> valuations;
 
     public Criteria() {
         name = "K";
-        criteriaValuations = new ArrayList<>();
+        valuations = new ArrayList<>();
     }
 
     public String getName() {
         return name;
+    }
+
+    public String getFullName() {
+        return new StringBuilder()
+                .append(name)
+                .append(index)
+                .toString();
+    }
+
+    public int getArrayIndex() {
+        return index - 1;
     }
 
     public int getIndex() {
@@ -28,21 +41,25 @@ public class Criteria {
         this.index = index;
     }
 
-    public ArrayList<CriteriaValuation> getCriteriaValuations() {
-        return criteriaValuations;
+    public List<Valuation> getValuations() {
+        return valuations;
     }
 
-    public void setCriteriaValuations(ArrayList<CriteriaValuation> criteriaValuations) {
-        this.criteriaValuations = criteriaValuations;
+    public void setValuations(List<Valuation> valuations) {
+        this.valuations = valuations;
     }
 
-    public void addCriteriaValuation(CriteriaValuation criteriaValuation) {
-            criteriaValuations.add(criteriaValuation);
+    public void addValuation(Valuation valuation) {
+        valuations.add(valuation);
     }
 
-    public void removeCriteriaValuation(CriteriaValuation criteriaValuation) {
-        if (criteriaValuations.size() > 0) {
-            criteriaValuations.remove(criteriaValuation);
+    public void removeCriteriaValuation(Valuation valuation) {
+        if (valuations.size() > 0) {
+            valuations.remove(valuation);
         }
+    }
+
+    public void sortValuations() {
+        Collections.sort(valuations, (o1, o2) -> Integer.compare(o1.getValuation(), o2.getValuation()));
     }
 }

@@ -1,9 +1,7 @@
 package homepunk.alternativeresolutions.presentation.view;
 
-import java.util.List;
-
 import homepunk.alternativeresolutions.presentation.viewmodels.Criteria;
-import homepunk.alternativeresolutions.presentation.viewmodels.CriteriaValuation;
+import homepunk.alternativeresolutions.presentation.viewmodels.Valuation;
 
 /**
  * Created by Homepunk on 06.06.2017.
@@ -12,11 +10,10 @@ import homepunk.alternativeresolutions.presentation.viewmodels.CriteriaValuation
 public interface CriteriasView extends View {
     void addCriteria(Criteria criteria);
 
-    void removeCriteria(int idnex);
+    void removeCriteria(Criteria criteria);
 
-    void onCriteriasEntered(List<CriteriaValuation> criteriaValuations);
+    void addCriteriaValuation(Criteria criteria, Valuation valuation);
 
-    void onCriteriaNumberEntered(int criteriaScalesNumber);
+    void removeCriteriaValuation(Criteria criteria, Valuation valuation);
 
-    void onCriteriasEnterFailed(String error);
 }

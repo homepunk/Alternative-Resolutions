@@ -8,11 +8,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -21,11 +22,11 @@ import butterknife.ButterKnife;
 import homepunk.alternativeresolutions.R;
 import homepunk.alternativeresolutions.presentation.base.BaseApp;
 import homepunk.alternativeresolutions.presentation.custom.CriteriaLayout;
-import homepunk.alternativeresolutions.presentation.custom.OnCriteriaValuationClickListener;
 import homepunk.alternativeresolutions.presentation.presenter.intefaces.CriteriasPresenter;
 import homepunk.alternativeresolutions.presentation.view.CriteriasView;
 import homepunk.alternativeresolutions.presentation.viewmodels.Criteria;
-import homepunk.alternativeresolutions.presentation.viewmodels.CriteriaValuation;
+import homepunk.alternativeresolutions.presentation.viewmodels.Valuation;
+import timber.log.Timber;
 
 public class CriteriasActivity extends AppCompatActivity implements CriteriasView {
     @Inject
@@ -38,7 +39,7 @@ public class CriteriasActivity extends AppCompatActivity implements CriteriasVie
     @BindView(R.id.criterias_quantity_spinner)
     Spinner criteriasQuantitySpinner;
 
-    private List<CriteriaLayout> criteriaLayouts;
+    private HashMap<Criteria, CriteriaLayout> criteriaCriteriaLayoutHashMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,68 +51,59 @@ public class CriteriasActivity extends AppCompatActivity implements CriteriasVie
     }
 
     @Override
-    public void onCriteriasEntered(List<CriteriaValuation> criteriaValuations) {
-
-    }
-
-    @Override
-    public void onCriteriaNumberEntered(int criteriaScalesNumber) {
-        for (int i = 0; i < criteriaScalesNumber; i++) {
-
-        }
-    }
-
-    @Override
-    public void onCriteriasEnterFailed(String error) {
-        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void removeCriteria(int index) {
-        CriteriaLayout criteriaLayout = criteriaLayouts.get(index);
-        criteriasLayout.removeView(criteriaLayout);
-    }
-
-    @Override
     public void addCriteria(Criteria criteria) {
         final CriteriaLayout criteriaLayout = new CriteriaLayout(this);
         criteriaLayout.setCriteria(criteria);
-        criteriaLayout.setOnCriteriaValuationClickListener(new OnCriteriaValuationClickListener() {
-            @Override
-            public void onCriteriaClick(Criteria criteria) {
+        criteriaLayout.setOnValuationClickListener(position -> presenter.onCriteriaValuationClick(criteria, position));
+        criteriaLayout.setOnAddValuationClickListener(v -> presenter.onAddCriteriaValuationClick(criteria));
 
-            }
-        });
-
-        criteriaLayouts.add(criteriaLayout);
+        criteriaCriteriaLayoutHashMap.put(criteria, criteriaLayout);
         criteriasLayout.addView(criteriaLayout);
+        Timber.i("Size of criteria layouts list after add: " + String.valueOf(criteriaCriteriaLayoutHashMap.size()));
     }
 
-    public void addCriteriaValuation(View parentContainer, String index) {
-        LinearLayout valuationItem = (LinearLayout) inflater.inflate(R.layout.item_criteria_valuation, null, false);
-        TextView valuationName = (TextView) ButterKnife.bind(R.id.item_criteria_valuation_index, valuationItem);
+    @Override
+    public void removeCriteria(Criteria criteriaToRemove) {
+        CriteriaLayout criteriaLayout = criteriaCriteriaLayoutHashMap.get(criteriaToRemove);
+        Iterator iterator = criteriaCriteriaLayoutHashMap.entrySet().iterator();
 
-        valuationName.setText(index);
+        while (iterator.hasNext()) {
+            Map.Entry pair = (Map.Entry) iterator.next();
+            Criteria criteria = (Criteria) pair.getKey();
 
-        ((LinearLayout) parentContainer).addView(valuationItem);
+            if (criteria.equals(criteriaToRemove)) {
+                iterator.remove();
+            }
+        }
+
+        criteriasLayout.removeView(criteriaLayout);
+        Timber.i("Size of criteria layouts list after remove: " + String.valueOf(criteriaCriteriaLayoutHashMap.size()));
+    }
+
+    @Override
+    public void addCriteriaValuation(Criteria criteria, Valuation valuation) {
+        CriteriaLayout criteriaLayout = criteriaCriteriaLayoutHashMap.get(criteria);
+
+        criteriaLayout.addValuation(valuation);
+    }
+
+    @Override
+    public void removeCriteriaValuation(Criteria criteria, Valuation valuation) {
+        CriteriaLayout criteriaLayout = criteriaCriteriaLayoutHashMap.get(criteria);
+
+        criteriaLayout.removeValuation(valuation);
+
     }
 
     private void init() {
         ButterKnife.bind(this);
         BaseApp.getBaseComponent().inject(this);
         presenter.init(this);
-        criteriaLayouts = new ArrayList<>();
+        criteriaCriteriaLayoutHashMap = new HashMap<>();
     }
 
     private void initUI() {
         setUpCriteriasQuantitySpinner();
-
-        final List<Integer> criteriaValuations = new ArrayList<>(8);
-
-        for (int i = 2; i < 10; i++) {
-            criteriaValuations.add(i);
-        }
-
     }
 
     private void setUpCriteriasQuantitySpinner() {
@@ -130,7 +122,7 @@ public class CriteriasActivity extends AppCompatActivity implements CriteriasVie
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 int criteriasNumber = criteriaQuantity.get(position);
 
-                presenter.onCriteriaQuantitySelected(criteriasNumber);
+                presenter.onCriteriaNumberSelected(criteriasNumber);
             }
 
             @Override

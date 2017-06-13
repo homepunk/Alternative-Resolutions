@@ -28,36 +28,12 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <include
-                android:id="@+id/item_criteria_valuation_the_worst"
-                layout="@layout/item_criteria_valuation" />
-
-            <include
-                android:id="@+id/item_criteria_valuation_worse"
-                layout="@layout/item_criteria_valuation"
-                android:visibility="gone" />
-
-            <include
-                android:id="@+id/item_criteria_valuation_bad"
-                layout="@layout/item_criteria_valuation" />
-
-            <include
-                android:id="@+id/item_criteria_valuation_normal"
-                layout="@layout/item_criteria_valuation"
-                android:visibility="gone" />
-
-            <include
-                android:id="@+id/item_criteria_valuation_good"
-                layout="@layout/item_criteria_valuation" />
-
-            <include
-                android:id="@+id/item_criteria_valuation_better"
-                layout="@layout/item_criteria_valuation"
-                android:visibility="gone" />
-
-            <include
-                android:id="@+id/item_criteria_valuation_the_best"
-                layout="@layout/item_criteria_valuation" />
+          <android.support.v7.widget.RecyclerView
+              android:id="@+id/item_criteria_valuations_recycle_view"
+              android:layout_marginLeft="@dimen/default_small_margin_padding"
+              android:layout_marginRight="@dimen/default_small_margin_padding"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"/>
 
         </LinearLayout>
 

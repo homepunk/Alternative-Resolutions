@@ -6,21 +6,19 @@ import homepunk.alternativeresolutions.presentation.utils.interfaces.Valuations;
  * Created by Homepunk on 06.06.2017.
  **/
 
-public class CriteriaValuation {
-
+public class Valuation {
+    @Valuations private int valuation;
     private char name;
-    private int valuation;
     private int lineIndex;
     private int columnIndex;
 
-    public CriteriaValuation() {
+    public Valuation() {
         this.name = 'k';
     }
 
     public char getName() {
         return name;
     }
-
 
     public int getColumnIndex() {
         return columnIndex;
@@ -38,8 +36,7 @@ public class CriteriaValuation {
         this.lineIndex = lineIndex;
     }
 
-    @Valuations
-    public int getValuation() {
+    @Valuations public int getValuation() {
         return valuation;
     }
 
