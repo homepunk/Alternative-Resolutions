@@ -31,7 +31,7 @@ public class ValuationAdapter extends RecyclerView.Adapter<ValuationAdapter.Valu
     @Override
     public ValuationHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View root = inflater.inflate(R.layout.item_criteria_valuation, parent, false);
+        View root = inflater.inflate(R.layout.item_valuation, parent, false);
 
         return new ValuationHolder(root);
     }
@@ -40,7 +40,7 @@ public class ValuationAdapter extends RecyclerView.Adapter<ValuationAdapter.Valu
     public void onBindViewHolder(ValuationHolder holder, int position) {
         Valuation valuation = valuations.get(position);
         String valuationName = new StringBuilder()
-                .append(valuation.getName())
+                .append(valuation.getPrefix())
                 .append(valuation.getColumnIndex())
                 .append(valuation.getLineIndex())
                 .toString();
@@ -48,7 +48,7 @@ public class ValuationAdapter extends RecyclerView.Adapter<ValuationAdapter.Valu
         holder.setValuationName(valuationName);
         holder.getRoot().setOnClickListener(v -> {
             if (valuationClickListener != null) {
-                valuationClickListener.onCriteriaValuationClick(position);
+                valuationClickListener.onCriterionValuationClick(position);
             }
         });
     }
@@ -80,7 +80,7 @@ public class ValuationAdapter extends RecyclerView.Adapter<ValuationAdapter.Valu
         public ValuationHolder(View root) {
             super(root);
             this.root = root;
-            valuationName = (TextView) root.findViewById(R.id.item_criteria_valuation_index);
+            valuationName = (TextView) root.findViewById(R.id.item_criterion_valuation_index);
         }
 
         void setValuationName(String valuationName) {

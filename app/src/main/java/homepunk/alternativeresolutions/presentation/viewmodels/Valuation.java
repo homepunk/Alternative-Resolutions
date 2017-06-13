@@ -1,23 +1,24 @@
 package homepunk.alternativeresolutions.presentation.viewmodels;
 
-import homepunk.alternativeresolutions.presentation.utils.interfaces.Valuations;
+import homepunk.alternativeresolutions.presentation.utils.interfaces.ValuationRatings;
 
 /**
  * Created by Homepunk on 06.06.2017.
  **/
 
 public class Valuation {
-    @Valuations private int valuation;
-    private char name;
+    @ValuationRatings
+    private int valuationRating;
+    private char prefix;
     private int lineIndex;
     private int columnIndex;
 
     public Valuation() {
-        this.name = 'k';
+        this.prefix = 'k';
     }
 
-    public char getName() {
-        return name;
+    public char getPrefix() {
+        return prefix;
     }
 
     public int getColumnIndex() {
@@ -36,11 +37,12 @@ public class Valuation {
         this.lineIndex = lineIndex;
     }
 
-    @Valuations public int getValuation() {
-        return valuation;
+    @ValuationRatings
+    public int getValuationRating() {
+        return valuationRating;
     }
 
-    public void setValuation(@Valuations int valuation) {
-        this.valuation = valuation;
+    public void setValuationRating(@ValuationRatings int valuationRating) {
+        this.valuationRating = valuationRating;
     }
 }

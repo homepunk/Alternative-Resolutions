@@ -8,23 +8,23 @@ import java.util.List;
  * Created by Homepunk on 06.06.2017.
  **/
 
-public class Criteria {
-    private String name;
+public class Criterion {
+    private char prefix;
     private int index;
     private List<Valuation> valuations;
 
-    public Criteria() {
-        name = "K";
+    public Criterion() {
+        prefix = 'K';
         valuations = new ArrayList<>();
     }
 
-    public String getName() {
-        return name;
+    public char getPrefix() {
+        return prefix;
     }
 
     public String getFullName() {
         return new StringBuilder()
-                .append(name)
+                .append(prefix)
                 .append(index)
                 .toString();
     }
@@ -53,13 +53,13 @@ public class Criteria {
         valuations.add(valuation);
     }
 
-    public void removeCriteriaValuation(Valuation valuation) {
+    public void removeValuation(Valuation valuation) {
         if (valuations.size() > 0) {
             valuations.remove(valuation);
         }
     }
 
     public void sortValuations() {
-        Collections.sort(valuations, (o1, o2) -> Integer.compare(o1.getValuation(), o2.getValuation()));
+        Collections.sort(valuations, (o1, o2) -> Integer.compare(o1.getValuationRating(), o2.getValuationRating()));
     }
 }

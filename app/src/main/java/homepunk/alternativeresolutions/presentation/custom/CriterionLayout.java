@@ -19,38 +19,38 @@ import butterknife.ButterKnife;
 import homepunk.alternativeresolutions.R;
 import homepunk.alternativeresolutions.presentation.custom.adapter.ValuationAdapter;
 import homepunk.alternativeresolutions.presentation.custom.interfaces.OnValuationClickListener;
-import homepunk.alternativeresolutions.presentation.viewmodels.Criteria;
+import homepunk.alternativeresolutions.presentation.viewmodels.Criterion;
 import homepunk.alternativeresolutions.presentation.viewmodels.Valuation;
 
 /**
  * Created by Homepunk on 12.06.2017.
  **/
 
-public class CriteriaLayout extends LinearLayout {
+public class CriterionLayout extends LinearLayout {
     @BindView(R.id.item_criteria_valuations_recycle_view)
     protected RecyclerView valuationsRecycler;
     @BindView(R.id.item_criteria_name)
-    protected TextView criteriaNameView;
+    protected TextView criterionNameView;
     @BindView(R.id.item_criteria_add_button)
-    protected FrameLayout addCriteriaView;
+    protected FrameLayout addValuationView;
 
-    private Criteria criteria;
+    private Criterion criterion;
     private ValuationAdapter valuationAdapter;
     private OnValuationClickListener valuationClickListener;
     private OnClickListener addValuationListener;
 
-    public CriteriaLayout(Context context) {
+    public CriterionLayout(Context context) {
         super(context);
         init(context);
     }
 
-    public CriteriaLayout(Context context, @Nullable AttributeSet attrs) {
+    public CriterionLayout(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
     private void init(Context context) {
-        View root = LayoutInflater.from(context).inflate(R.layout.item_criteria, this);
+        View root = LayoutInflater.from(context).inflate(R.layout.item_criterion, this);
         ButterKnife.bind(this, root);
         initCriteriaValuationsRecycler(context);
     }
@@ -59,17 +59,17 @@ public class CriteriaLayout extends LinearLayout {
         valuationAdapter = new ValuationAdapter(context);
         valuationAdapter.setOnValuationClickListener(position -> {
             if (valuationClickListener != null) {
-                valuationClickListener.onCriteriaValuationClick(position);
+                valuationClickListener.onCriterionValuationClick(position);
             }
         });
 
-        valuationsRecycler.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
         valuationsRecycler.setAdapter(valuationAdapter);
+        valuationsRecycler.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
 
     }
 
-    public void setCriteria(Criteria criteria) {
-        this.criteria = criteria;
+    public void setCriterion(Criterion criterion) {
+        this.criterion = criterion;
         update();
     }
 
@@ -78,7 +78,7 @@ public class CriteriaLayout extends LinearLayout {
     }
 
     public void removeValuation(Valuation valuationToRemove) {
-        List<Valuation> valuations = criteria.getValuations();
+        List<Valuation> valuations = criterion.getValuations();
         Iterator<Valuation> iterator = valuations.iterator();
 
         while (iterator.hasNext()) {
@@ -92,9 +92,13 @@ public class CriteriaLayout extends LinearLayout {
         valuationAdapter.update(valuations);
     }
 
+    public void updateCriteriaValuations(Criterion criterion) {
+        valuationAdapter.update(criterion.getValuations());
+    }
+
     private void update() {
-        valuationAdapter.update(criteria.getValuations());
-        criteriaNameView.setText(criteria.getFullName());
+        valuationAdapter.update(criterion.getValuations());
+        criterionNameView.setText(criterion.getFullName());
     }
 
     public void setOnValuationClickListener(OnValuationClickListener valuationClickListener) {
@@ -102,6 +106,6 @@ public class CriteriaLayout extends LinearLayout {
     }
 
     public void setOnAddValuationClickListener(OnClickListener addValuationListener) {
-        addCriteriaView.setOnClickListener(addValuationListener);
+        addValuationView.setOnClickListener(addValuationListener);
     }
 }

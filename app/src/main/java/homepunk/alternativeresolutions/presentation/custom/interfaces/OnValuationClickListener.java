@@ -5,5 +5,5 @@ package homepunk.alternativeresolutions.presentation.custom.interfaces;
  */
 
 public interface OnValuationClickListener {
-    void onCriteriaValuationClick(int position);
+    void onCriterionValuationClick(int position);
 }

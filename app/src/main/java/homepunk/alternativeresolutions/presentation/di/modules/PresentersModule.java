@@ -4,8 +4,8 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import homepunk.alternativeresolutions.presentation.presenter.CriteriasPresenterImpl;
-import homepunk.alternativeresolutions.presentation.presenter.intefaces.CriteriasPresenter;
+import homepunk.alternativeresolutions.presentation.presenter.DataInputPresenterImpl;
+import homepunk.alternativeresolutions.presentation.presenter.intefaces.DataInputPresenter;
 
 /**
  * Created by Homepunk on 12.06.2017.
@@ -15,7 +15,7 @@ import homepunk.alternativeresolutions.presentation.presenter.intefaces.Criteria
 public class PresentersModule {
     @Provides
     @Singleton
-    CriteriasPresenter providesCriteriasPresenter() {
-        return new CriteriasPresenterImpl();
+    DataInputPresenter providesDataInputPresenter() {
+        return new DataInputPresenterImpl();
     }
 }

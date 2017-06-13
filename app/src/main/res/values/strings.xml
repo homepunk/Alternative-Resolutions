@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Alternative Resolutions</string>
-    <string name="enter_number_of_criterias">Введите количество критериев</string>
+    <string name="enter_number_of_criteria">Введите количество критериев</string>
     <string name="separator">,</string>
 </resources>
