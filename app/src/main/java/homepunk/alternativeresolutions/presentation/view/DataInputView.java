@@ -1,5 +1,6 @@
 package homepunk.alternativeresolutions.presentation.view;
 
+import homepunk.alternativeresolutions.presentation.activity.DataInputActivity;
 import homepunk.alternativeresolutions.presentation.viewmodels.Criterion;
 import homepunk.alternativeresolutions.presentation.viewmodels.Valuation;
 
@@ -8,11 +9,13 @@ import homepunk.alternativeresolutions.presentation.viewmodels.Valuation;
  **/
 
 public interface DataInputView extends View {
-    void addCriterion(Criterion criterion);
+    DataInputActivity getActivity();
 
-    void removeCriterion(Criterion criterion);
+    void addCriterion(Criterion criterion);
 
     void addCriterionValuation(Criterion criterion);
 
     void removeCriterionValuation(Criterion criterion, Valuation valuation);
+
+    void onAlternateSelectionFailed(String message);
 }

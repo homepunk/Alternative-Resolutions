@@ -35,5 +35,12 @@ public interface Constants {
     };
 
     int MIN_VALUATIONS_SIZE = 1;
-    int MAX_VALUATIONS_SIZE = 7;
+    int MAX_VALUATIONS_SIZE = 5;
+    int MIN_CRITERIA_SIZE = 2;
+    int MAX_CRITERIA_SIZE = 3;
+
+    String ALTERNATE_ERROR_MESSAGE = "Пожалуйста выберите альтернативу";
+    String NAME_TWO_DIMENSIONS_DOMINATION_GRAPH = "Двумерный граф доминирования";
+    String DOMINATION_GRAPH_FRAGMENT_KEY = "domination graph fragment key";
+    String KEY_SELECTED_ALTERNATE = "key selected alternate";
 }

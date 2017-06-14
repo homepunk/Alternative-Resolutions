@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="default_small_margin_padding">8dp</dimen>
-    <dimen name="default_small_text_size">12sp</dimen>
+    <dimen name="default_margin_padding">16dp</dimen>
+    <dimen name="default_smaller_margin_padding">4dp</dimen>
+    <dimen name="default_small_text_size">10sp</dimen>
     <dimen name="default_small_image_size_24">24dp</dimen>
     <dimen name="default_large_text_size">18sp</dimen>
 </resources>

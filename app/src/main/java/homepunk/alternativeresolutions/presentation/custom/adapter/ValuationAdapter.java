@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import homepunk.alternativeresolutions.R;
-import homepunk.alternativeresolutions.presentation.custom.interfaces.OnValuationClickListener;
+import homepunk.alternativeresolutions.presentation.custom.interfaces.SimpleClickListener;
 import homepunk.alternativeresolutions.presentation.viewmodels.Valuation;
 
 /**
@@ -21,7 +21,7 @@ import homepunk.alternativeresolutions.presentation.viewmodels.Valuation;
 public class ValuationAdapter extends RecyclerView.Adapter<ValuationAdapter.ValuationHolder> {
     private Context context;
     private List<Valuation> valuations;
-    private OnValuationClickListener valuationClickListener;
+    private SimpleClickListener valuationClickListener;
 
     public ValuationAdapter(Context context) {
         this.context = context;
@@ -48,8 +48,15 @@ public class ValuationAdapter extends RecyclerView.Adapter<ValuationAdapter.Valu
         holder.setValuationName(valuationName);
         holder.getRoot().setOnClickListener(v -> {
             if (valuationClickListener != null) {
-                valuationClickListener.onCriterionValuationClick(position);
+                valuationClickListener.onClick(position);
             }
+        });
+
+        holder.getRoot().setOnLongClickListener(v -> {
+            if (valuationClickListener != null) {
+                valuationClickListener.onLongCLick(position);
+            }
+            return true;
         });
     }
 
@@ -58,7 +65,7 @@ public class ValuationAdapter extends RecyclerView.Adapter<ValuationAdapter.Valu
         return valuations.size();
     }
 
-    public void setOnValuationClickListener(OnValuationClickListener valuationClickListener) {
+    public void setOnValuationClickListener(SimpleClickListener valuationClickListener) {
         this.valuationClickListener = valuationClickListener;
     }
 

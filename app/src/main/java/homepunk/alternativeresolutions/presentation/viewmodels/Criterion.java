@@ -1,5 +1,6 @@
 package homepunk.alternativeresolutions.presentation.viewmodels;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.List;
  * Created by Homepunk on 06.06.2017.
  **/
 
-public class Criterion {
+public class Criterion implements Serializable {
     private char prefix;
     private int index;
     private List<Valuation> valuations;

@@ -8,11 +8,13 @@ import homepunk.alternativeresolutions.presentation.viewmodels.Criterion;
  **/
 
 public interface DataInputPresenter extends Presenter<DataInputView> {
-    void onCriterionQuantityEntered(int quantity);
+    void createCriteriaInput();
 
     void onAddCriterionValuationClick(Criterion criterion);
 
     void onCriterionValuationClick(Criterion criterion, int position);
 
-    void onBuildDominationGraphButtonClick();
+    void onCriterionValuationLongClick(Criterion criterion, int position);
+
+    void onFindAlternatesButtonClick();
 }

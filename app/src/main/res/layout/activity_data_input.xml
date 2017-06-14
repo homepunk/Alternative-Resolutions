@@ -6,35 +6,28 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackgroundLight"
     android:orientation="vertical"
-    android:padding="8dp"
     tools:context="homepunk.alternativeresolutions.presentation.activity.DataInputActivity">
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/criteria_quantity_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:text="@string/enter_number_of_criteria"
-            android:textAlignment="center" />
-
-        <Spinner
-            android:id="@+id/criteria_quantity_spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:dropDownWidth="match_parent" />
-    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/activity_criteria_criteria_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="100dp"
+        android:layout_margin="@dimen/default_small_margin_padding"
         android:orientation="vertical" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_small_margin_padding">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/selected_alternate"/>
+
+
+
+    </LinearLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -42,7 +35,7 @@
         android:layout_margin="@dimen/default_small_margin_padding">
 
         <ImageView
-            android:id="@+id/activity_criteria_calculate_button"
+            android:id="@+id/activity_criteria_find_alternates_button"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:background="@color/colorPrimary" />
@@ -55,11 +48,9 @@
             android:textColor="@color/colorAccent" />
     </FrameLayout>
 
-    <fragment
-        android:name="homepunk.alternativeresolutions.presentation.fragment.DominationGraphFragment"
-        android:id="@+id/activity_criteria_fragment_domination_graph"
+    <FrameLayout
+        android:id="@+id/activity_criteria_fragment_domination_graph_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

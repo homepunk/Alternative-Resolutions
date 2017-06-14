@@ -19,6 +19,7 @@ import butterknife.ButterKnife;
 import homepunk.alternativeresolutions.R;
 import homepunk.alternativeresolutions.presentation.custom.adapter.ValuationAdapter;
 import homepunk.alternativeresolutions.presentation.custom.interfaces.OnValuationClickListener;
+import homepunk.alternativeresolutions.presentation.custom.interfaces.SimpleClickListener;
 import homepunk.alternativeresolutions.presentation.viewmodels.Criterion;
 import homepunk.alternativeresolutions.presentation.viewmodels.Valuation;
 
@@ -57,9 +58,19 @@ public class CriterionLayout extends LinearLayout {
 
     private void initCriteriaValuationsRecycler(Context context) {
         valuationAdapter = new ValuationAdapter(context);
-        valuationAdapter.setOnValuationClickListener(position -> {
-            if (valuationClickListener != null) {
-                valuationClickListener.onCriterionValuationClick(position);
+        valuationAdapter.setOnValuationClickListener(new SimpleClickListener() {
+            @Override
+            public void onClick(int position) {
+                if (valuationClickListener != null) {
+                    valuationClickListener.onCriterionValuationClick(criterion, position);
+                }
+            }
+
+            @Override
+            public void onLongCLick(int position) {
+                if (valuationClickListener != null) {
+                    valuationClickListener.onCriterionValuationLongLick(criterion, position);
+                }
             }
         });
 

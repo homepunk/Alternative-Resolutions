@@ -1,17 +1,27 @@
 package homepunk.alternativeresolutions.presentation.presenter;
 
+import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
+import homepunk.alternativeresolutions.R;
 import homepunk.alternativeresolutions.presentation.base.BasePresenter;
+import homepunk.alternativeresolutions.presentation.fragment.DominationGraphFragment;
 import homepunk.alternativeresolutions.presentation.presenter.intefaces.DataInputPresenter;
 import homepunk.alternativeresolutions.presentation.view.DataInputView;
+import homepunk.alternativeresolutions.presentation.viewmodels.Alternate;
 import homepunk.alternativeresolutions.presentation.viewmodels.Criterion;
 import homepunk.alternativeresolutions.presentation.viewmodels.Valuation;
-import timber.log.Timber;
 
+import static homepunk.alternativeresolutions.presentation.data.Constants.ALTERNATE_ERROR_MESSAGE;
 import static homepunk.alternativeresolutions.presentation.data.Constants.DEFAULT_VALUATIONS;
+import static homepunk.alternativeresolutions.presentation.data.Constants.DOMINATION_GRAPH_FRAGMENT_KEY;
+import static homepunk.alternativeresolutions.presentation.data.Constants.KEY_SELECTED_ALTERNATE;
+import static homepunk.alternativeresolutions.presentation.data.Constants.MAX_CRITERIA_SIZE;
 import static homepunk.alternativeresolutions.presentation.data.Constants.MAX_VALUATIONS_SIZE;
 import static homepunk.alternativeresolutions.presentation.data.Constants.MIN_VALUATIONS_SIZE;
 import static homepunk.alternativeresolutions.presentation.data.Constants.VALUATIONS_RATINGS;
@@ -22,33 +32,17 @@ import static homepunk.alternativeresolutions.presentation.data.Constants.VALUAT
 
 public class DataInputPresenterImpl extends BasePresenter<DataInputView> implements DataInputPresenter {
     private List<Criterion> criteria;
-
-    public DataInputPresenterImpl() {
-        criteria = new ArrayList<>(4);
-    }
+    private Alternate alternate;
+    private boolean isFragmentCreated;
 
     @Override
-    public void onCriterionQuantityEntered(int quantity) {
-        if (quantity > criteria.size()) {
-            int difference = quantity - criteria.size();
-
-            for (int i = 0; i < difference; i++) {
-                createCriterion();
-            }
+    public void createCriteriaInput() {
+        if (criteria == null) {
+            criteria = new ArrayList<>(MAX_CRITERIA_SIZE);
         }
 
-        if (quantity < criteria.size()) {
-            int difference = criteria.size() - quantity;
-
-            for (int i = criteria.size() - 1; i >= difference; i--) {
-
-                Criterion criterion = criteria.get(i);
-
-                if (criterion.getIndex() > quantity) {
-                    removeCriterion(criterion);
-                }
-            }
-        }
+        createCriterion();
+        createCriterion();
     }
 
     @Override
@@ -81,6 +75,24 @@ public class DataInputPresenterImpl extends BasePresenter<DataInputView> impleme
 
     @Override
     public void onCriterionValuationClick(Criterion criterion, int position) {
+        if (alternate == null || !alternate.isEmpty()) {
+            alternate = new Alternate();
+        }
+
+        int pairPosition = criterion.getIndex();
+        switch (pairPosition) {
+            case 1: {
+                alternate.setFirstValuation(criterion.getValuations().get(position));
+            }
+
+            case 2: {
+                alternate.setSecondValuation(criterion.getValuations().get(position));
+            }
+        }
+    }
+
+    @Override
+    public void onCriterionValuationLongClick(Criterion criterion, int position) {
         List<Valuation> valuations = criterion.getValuations();
         Valuation valuationToRemove = valuations.get(position);
 
@@ -92,13 +104,41 @@ public class DataInputPresenterImpl extends BasePresenter<DataInputView> impleme
     }
 
     @Override
-    public void onBuildDominationGraphButtonClick() {
-        for (Criterion criterion : criteria) {
-            Timber.i("Criterion: " + criterion.getFullName());
-            for (Valuation valuation : criterion.getValuations()) {
-                Timber.i("Valuation: " + valuation.getPrefix() + valuation.getColumnIndex() + valuation.getLineIndex());
+    public void onFindAlternatesButtonClick() {
+        if (view != null) {
+            if (isAlternateSelected()) {
+                FragmentManager fragmentManager = view.getActivity().getSupportFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                DominationGraphFragment fragment = createDominationGraphFragmentWithCriteriaArgument();
+
+                if (isFragmentCreated) {
+                    transaction.replace(R.id.activity_criteria_fragment_domination_graph_container, fragment);
+                    transaction.commit();
+                } else {
+                    transaction.add(R.id.activity_criteria_fragment_domination_graph_container, fragment);
+                    transaction.commit();
+                }
+            } else {
+                view.onAlternateSelectionFailed(ALTERNATE_ERROR_MESSAGE);
             }
+
         }
+    }
+
+    private DominationGraphFragment createDominationGraphFragmentWithCriteriaArgument() {
+        isFragmentCreated = true;
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(KEY_SELECTED_ALTERNATE, alternate);
+        bundle.putSerializable(DOMINATION_GRAPH_FRAGMENT_KEY, (Serializable) criteria);
+
+        DominationGraphFragment fragment = new DominationGraphFragment();
+        fragment.setArguments(bundle);
+
+        return fragment;
+    }
+
+    private boolean isAlternateSelected() {
+        return alternate != null && !alternate.isEmpty() && alternate.getAlternate().first != null && alternate.getAlternate().second != null;
     }
 
     private void removeCriterionValuationFromList(Criterion criterion, Valuation valuation) {
@@ -149,26 +189,9 @@ public class DataInputPresenterImpl extends BasePresenter<DataInputView> impleme
 
     /**
      * @return New shifted by one index for created criterion
-     * */
+     */
 
     private int generateIndex() {
         return criteria.size() + 1;
-    }
-
-    private void removeCriterion(Criterion criterion) {
-        removeCriterionFromList(criterion);
-        view.removeCriterion(criterion);
-    }
-
-    private void removeCriterionFromList(Criterion criterionToRemove) {
-        Iterator<Criterion> iterator = criteria.iterator();
-
-        while (iterator.hasNext()) {
-            Criterion criterion = iterator.next();
-
-            if (criterion.getIndex() == criterionToRemove.getIndex()) {
-                iterator.remove();
-            }
-        }
     }
 }

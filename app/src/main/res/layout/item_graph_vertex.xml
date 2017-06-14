@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_marginTop="@dimen/default_smaller_margin_padding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/item_graph_vertex_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/left_brace"
+                android:textSize="@dimen/default_large_text_size" />
+
+            <FrameLayout
+                android:layout_marginLeft="@dimen/default_smaller_margin_padding"
+                android:layout_width="@dimen/default_small_image_size_24"
+                android:layout_height="@dimen/default_small_image_size_24">
+
+                <ImageView
+                    android:id="@+id/item_graph_first_vertex_circle_image"
+                    android:layout_width="@dimen/default_small_image_size_24"
+                    android:layout_height="@dimen/default_small_image_size_24"
+                    android:src="@drawable/circle" />
+
+                <TextView
+                    android:id="@+id/item_graph_first_vertex_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="k13"
+                    android:textSize="@dimen/default_small_text_size" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:text="@string/separator" />
+
+            <FrameLayout
+                android:layout_width="@dimen/default_small_image_size_24"
+                android:layout_height="@dimen/default_small_image_size_24"
+                android:layout_marginLeft="@dimen/default_smaller_margin_padding">
+
+                <ImageView
+                    android:id="@+id/item_graph_second_vertex_circle_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/circle" />
+
+                <TextView
+                    android:id="@+id/item_graph_second_vertex_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="k13"
+                    android:textSize="@dimen/default_small_text_size" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/default_smaller_margin_padding"
+                android:minHeight="10dp"
+                android:minWidth="10dp"
+                android:text="@string/right_brace"
+                android:textSize="@dimen/default_large_text_size" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/item_graph_vertex_downward_arrow"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_below="@id/item_graph_vertex_layout"
+            android:layout_marginTop="@dimen/default_smaller_margin_padding"
+            android:layout_marginLeft="28dp"
+            android:src="@drawable/ic_arrow_downward_24dp"
+            android:tint="@color/colorHintText" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/item_graph_vertex_forward_arrow"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginLeft="@dimen/default_smaller_margin_padding"
+        android:layout_marginTop="@dimen/default_small_margin_padding"
+        android:layout_marginRight="@dimen/default_smaller_margin_padding"
+        android:layout_toRightOf="@id/item_graph_vertex_layout"
+        android:src="@drawable/ic_arrow_forward_24dp"
+        android:tint="@color/colorHintText" />
+</LinearLayout>
