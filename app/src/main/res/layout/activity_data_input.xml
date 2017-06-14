@@ -23,10 +23,48 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/selected_alternate"/>
+            android:layout_gravity="center_vertical"
+            android:text="@string/selected_alternate" />
 
+        <FrameLayout
+            android:layout_width="@dimen/default_small_image_size_24"
+            android:layout_height="@dimen/default_small_image_size_24"
+            android:layout_marginLeft="@dimen/default_smaller_margin_padding">
 
+            <ImageView
+                android:id="@+id/activity_criteria_first_selected_valuation_view"
+                android:layout_width="@dimen/default_small_image_size_24"
+                android:layout_height="@dimen/default_small_image_size_24"
+                android:src="@drawable/circle" />
 
+            <TextView
+                android:id="@+id/activity_criteria_first_selected_valuation_index"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="k13"
+                android:textSize="@dimen/default_small_text_size" />
+        </FrameLayout>
+
+   <FrameLayout
+            android:layout_width="@dimen/default_small_image_size_24"
+            android:layout_height="@dimen/default_small_image_size_24"
+            android:layout_marginLeft="@dimen/default_smaller_margin_padding">
+
+            <ImageView
+                android:id="@+id/activity_criteria_second_selected_valuation_view"
+                android:layout_width="@dimen/default_small_image_size_24"
+                android:layout_height="@dimen/default_small_image_size_24"
+                android:src="@drawable/circle" />
+
+            <TextView
+                android:id="@+id/activity_criteria_second_selected_valuation_index"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="k13"
+                android:textSize="@dimen/default_small_text_size" />
+        </FrameLayout>
     </LinearLayout>
 
     <FrameLayout

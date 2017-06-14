@@ -80,13 +80,18 @@ public class DataInputPresenterImpl extends BasePresenter<DataInputView> impleme
         }
 
         int pairPosition = criterion.getIndex();
+        Valuation valuation = criterion.getValuations().get(position);
         switch (pairPosition) {
             case 1: {
-                alternate.setFirstValuation(criterion.getValuations().get(position));
+                alternate.setFirstValuation(valuation);
+                view.showAlternateValuation(valuation);
+                break;
             }
 
             case 2: {
-                alternate.setSecondValuation(criterion.getValuations().get(position));
+                alternate.setSecondValuation(valuation);
+                view.showAlternateValuation(valuation);
+                break;
             }
         }
     }

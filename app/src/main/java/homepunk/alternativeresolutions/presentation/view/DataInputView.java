@@ -18,4 +18,6 @@ public interface DataInputView extends View {
     void removeCriterionValuation(Criterion criterion, Valuation valuation);
 
     void onAlternateSelectionFailed(String message);
+
+    void showAlternateValuation(Valuation valuation);
 }

@@ -4,7 +4,10 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.HashMap;
@@ -31,6 +34,14 @@ public class DataInputActivity extends AppCompatActivity implements DataInputVie
 
     @BindView(R.id.activity_criteria_criteria_container)
     LinearLayout criteriaLayout;
+    @BindView(R.id.activity_criteria_first_selected_valuation_view)
+    ImageView alternateFirstValuationView;
+    @BindView(R.id.activity_criteria_first_selected_valuation_index)
+    TextView alternateFirstValuationName;
+    @BindView(R.id.activity_criteria_second_selected_valuation_index)
+    TextView alternateSecondValuationName;
+    @BindView(R.id.activity_criteria_second_selected_valuation_view)
+    ImageView alternateSecondValuationView;
 
     private HashMap<Criterion, CriterionLayout> criteriaCriteriaLayoutHashMap;
 
@@ -90,6 +101,24 @@ public class DataInputActivity extends AppCompatActivity implements DataInputVie
     @Override
     public void onAlternateSelectionFailed(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showAlternateValuation(Valuation valuation) {
+        int position = valuation.getColumnIndex();
+
+        switch (position) {
+            case 1: {
+                alternateFirstValuationName.setText(valuation.getFullName());
+                alternateFirstValuationView.setVisibility(View.VISIBLE);
+                break;
+            }
+            case 2: {
+                alternateSecondValuationName.setText(valuation.getFullName());
+                alternateSecondValuationView.setVisibility(View.VISIBLE);
+                break;
+            }
+        }
     }
 
     @OnClick(R.id.activity_criteria_find_alternates_button)
