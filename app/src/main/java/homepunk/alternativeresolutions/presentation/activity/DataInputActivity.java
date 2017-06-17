@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,8 +22,8 @@ import homepunk.alternativeresolutions.presentation.custom.CriterionLayout;
 import homepunk.alternativeresolutions.presentation.custom.interfaces.OnValuationClickListener;
 import homepunk.alternativeresolutions.presentation.presenter.intefaces.DataInputPresenter;
 import homepunk.alternativeresolutions.presentation.view.DataInputView;
-import homepunk.alternativeresolutions.presentation.viewmodels.Criterion;
-import homepunk.alternativeresolutions.presentation.viewmodels.Valuation;
+import homepunk.alternativeresolutions.presentation.models.Criterion;
+import homepunk.alternativeresolutions.presentation.models.Valuation;
 
 public class DataInputActivity extends AppCompatActivity implements DataInputView {
     @Inject
@@ -110,12 +109,10 @@ public class DataInputActivity extends AppCompatActivity implements DataInputVie
         switch (position) {
             case 1: {
                 alternateFirstValuationName.setText(valuation.getFullName());
-                alternateFirstValuationView.setVisibility(View.VISIBLE);
                 break;
             }
             case 2: {
                 alternateSecondValuationName.setText(valuation.getFullName());
-                alternateSecondValuationView.setVisibility(View.VISIBLE);
                 break;
             }
         }

@@ -1,8 +1,8 @@
 package homepunk.alternativeresolutions.presentation.view;
 
 import homepunk.alternativeresolutions.presentation.activity.DataInputActivity;
-import homepunk.alternativeresolutions.presentation.viewmodels.Criterion;
-import homepunk.alternativeresolutions.presentation.viewmodels.Valuation;
+import homepunk.alternativeresolutions.presentation.models.Criterion;
+import homepunk.alternativeresolutions.presentation.models.Valuation;
 
 /**
  * Created by Homepunk on 06.06.2017.

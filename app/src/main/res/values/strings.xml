@@ -1,9 +1,17 @@
 <resources>
-    <string name="app_name">Alternative Resolutions</string>
+    <string name="app_name">Alternates resolution</string>
     <string name="enter_number_of_criteria">Введите количество критериев</string>
     <string name="separator">,</string>
     <string name="two_dimensions_domination_graph">Двумерный граф доминирования</string>
     <string name="left_brace">(</string>
     <string name="right_brace">)</string>
     <string name="selected_alternate">Выбранная альтернатива:</string>
+    <string name="not_selected_valuation_text">\?</string>
+    <string name="find_alternates_button">Найти все возможные альтернативы</string>
+    <string name="better_alternates_text">Альтернавтивы лучше заданой:</string>
+    <string name="worse_alternates_text">Альтернативы хуже заданой:</string>
+    <string name="incomaprable_alternates">Альтернативы несравнимые с заданой:</string>
+    <string name="solutions_text">Решение:</string>
+    <string name="best_alternate">Лучшая альтернатива:</string>
+    <string name="worst_alternate">Худшая альтернатива:</string>
 </resources>

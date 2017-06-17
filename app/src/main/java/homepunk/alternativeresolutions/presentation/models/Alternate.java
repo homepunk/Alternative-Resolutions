@@ -1,4 +1,4 @@
-package homepunk.alternativeresolutions.presentation.viewmodels;
+package homepunk.alternativeresolutions.presentation.models;
 
 import android.support.annotation.NonNull;
 import android.support.v4.util.Pair;
@@ -51,9 +51,9 @@ public class Alternate implements Comparable<Alternate>, Serializable {
     @Override
     public String toString() {
         return new StringBuilder()
-                .append(first.getFullName())
+                .append(alternate.first.getFullName())
                 .append(" - ")
-                .append(second.getFullName())
+                .append(alternate.second.getFullName())
                 .toString();
     }
 

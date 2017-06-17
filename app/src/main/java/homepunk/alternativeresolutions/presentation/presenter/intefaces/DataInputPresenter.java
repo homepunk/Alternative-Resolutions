@@ -1,7 +1,7 @@
 package homepunk.alternativeresolutions.presentation.presenter.intefaces;
 
 import homepunk.alternativeresolutions.presentation.view.DataInputView;
-import homepunk.alternativeresolutions.presentation.viewmodels.Criterion;
+import homepunk.alternativeresolutions.presentation.models.Criterion;
 
 /**
  * Created by Homepunk on 06.06.2017.

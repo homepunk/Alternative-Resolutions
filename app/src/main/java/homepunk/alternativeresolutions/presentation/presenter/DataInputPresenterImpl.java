@@ -13,15 +13,15 @@ import homepunk.alternativeresolutions.presentation.base.BasePresenter;
 import homepunk.alternativeresolutions.presentation.fragment.DominationGraphFragment;
 import homepunk.alternativeresolutions.presentation.presenter.intefaces.DataInputPresenter;
 import homepunk.alternativeresolutions.presentation.view.DataInputView;
-import homepunk.alternativeresolutions.presentation.viewmodels.Alternate;
-import homepunk.alternativeresolutions.presentation.viewmodels.Criterion;
-import homepunk.alternativeresolutions.presentation.viewmodels.Valuation;
+import homepunk.alternativeresolutions.presentation.models.Alternate;
+import homepunk.alternativeresolutions.presentation.models.Criterion;
+import homepunk.alternativeresolutions.presentation.models.Valuation;
 
 import static homepunk.alternativeresolutions.presentation.data.Constants.ALTERNATE_ERROR_MESSAGE;
+import static homepunk.alternativeresolutions.presentation.data.Constants.CRITERIA_SIZE;
 import static homepunk.alternativeresolutions.presentation.data.Constants.DEFAULT_VALUATIONS;
 import static homepunk.alternativeresolutions.presentation.data.Constants.DOMINATION_GRAPH_FRAGMENT_KEY;
 import static homepunk.alternativeresolutions.presentation.data.Constants.KEY_SELECTED_ALTERNATE;
-import static homepunk.alternativeresolutions.presentation.data.Constants.MAX_CRITERIA_SIZE;
 import static homepunk.alternativeresolutions.presentation.data.Constants.MAX_VALUATIONS_SIZE;
 import static homepunk.alternativeresolutions.presentation.data.Constants.MIN_VALUATIONS_SIZE;
 import static homepunk.alternativeresolutions.presentation.data.Constants.VALUATIONS_RATINGS;
@@ -38,7 +38,7 @@ public class DataInputPresenterImpl extends BasePresenter<DataInputView> impleme
     @Override
     public void createCriteriaInput() {
         if (criteria == null) {
-            criteria = new ArrayList<>(MAX_CRITERIA_SIZE);
+            criteria = new ArrayList<>(CRITERIA_SIZE);
         }
 
         createCriterion();

@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import homepunk.alternativeresolutions.R;
-import homepunk.alternativeresolutions.presentation.viewmodels.Alternate;
-import homepunk.alternativeresolutions.presentation.viewmodels.DominationGraph;
-import homepunk.alternativeresolutions.presentation.viewmodels.Valuation;
+import homepunk.alternativeresolutions.presentation.models.Alternate;
+import homepunk.alternativeresolutions.presentation.models.DominationGraph;
+import homepunk.alternativeresolutions.presentation.models.Valuation;
 
 /**
  * Created by Homepunk on 14.06.2017.
@@ -46,12 +46,13 @@ public class GraphVertexAdapter extends RecyclerView.Adapter<GraphVertexAdapter.
         } else {
             holder.showDownwardArrow(false);
         }
-//
+
         if (second.getLineIndex() < dominationGraph.getLinesCount()) {
             holder.showForwardArrow(true);
         } else {
             holder.showForwardArrow(false);
         }
+
         holder.setFirstVertexName(first.getFullName());
         holder.setSecondVertexName(second.getFullName());
     }
@@ -76,8 +77,8 @@ public class GraphVertexAdapter extends RecyclerView.Adapter<GraphVertexAdapter.
         VertexHolder(View root) {
             super(root);
 
-            firstVertexName = (TextView) root.findViewById(R.id.item_graph_first_vertex_name);
-            secondVertexName = (TextView) root.findViewById(R.id.item_graph_second_vertex_name);
+            firstVertexName = (TextView) root.findViewById(R.id.item_alternate_first_valuation_name);
+            secondVertexName = (TextView) root.findViewById(R.id.item_alternate_second_valuation_name);
             forwardArrow = (ImageView) root.findViewById(R.id.item_graph_vertex_forward_arrow);
             downwardArrow= (ImageView) root.findViewById(R.id.item_graph_vertex_downward_arrow);
         }

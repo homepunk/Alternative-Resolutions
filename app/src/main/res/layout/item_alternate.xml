@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_marginTop="@dimen/default_smaller_margin_padding"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:id="@+id/item_alternate_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/left_brace"
+            android:textSize="@dimen/default_large_text_size" />
+
+        <FrameLayout
+            android:layout_marginLeft="@dimen/default_smaller_margin_padding"
+            android:layout_width="@dimen/default_small_image_size_24"
+            android:layout_height="@dimen/default_small_image_size_24">
+
+            <ImageView
+                android:id="@+id/item_alternate_first_valuation_circle_image"
+                android:layout_width="@dimen/default_small_image_size_24"
+                android:layout_height="@dimen/default_small_image_size_24"
+                android:src="@drawable/circle" />
+
+            <TextView
+                android:id="@+id/item_alternate_first_valuation_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="k13"
+                android:textSize="@dimen/default_small_text_size" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:text="@string/separator" />
+
+        <FrameLayout
+            android:layout_width="@dimen/default_small_image_size_24"
+            android:layout_height="@dimen/default_small_image_size_24"
+            android:layout_marginLeft="@dimen/default_smaller_margin_padding">
+
+            <ImageView
+                android:id="@+id/item_alternate_second_valuation_circle_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/circle" />
+
+            <TextView
+                android:id="@+id/item_alternate_second_valuation_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="k13"
+                android:textSize="@dimen/default_small_text_size" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/default_smaller_margin_padding"
+            android:minHeight="10dp"
+            android:minWidth="10dp"
+            android:text="@string/right_brace"
+            android:textSize="@dimen/default_large_text_size" />
+    </LinearLayout>
+</RelativeLayout>

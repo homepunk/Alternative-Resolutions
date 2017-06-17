@@ -1,4 +1,4 @@
-package homepunk.alternativeresolutions.presentation.viewmodels;
+package homepunk.alternativeresolutions.presentation.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -36,8 +36,7 @@ public interface Constants {
 
     int MIN_VALUATIONS_SIZE = 1;
     int MAX_VALUATIONS_SIZE = 5;
-    int MIN_CRITERIA_SIZE = 2;
-    int MAX_CRITERIA_SIZE = 3;
+    int CRITERIA_SIZE = 2;
 
     String ALTERNATE_ERROR_MESSAGE = "Пожалуйста выберите альтернативу";
     String NAME_TWO_DIMENSIONS_DOMINATION_GRAPH = "Двумерный граф доминирования";

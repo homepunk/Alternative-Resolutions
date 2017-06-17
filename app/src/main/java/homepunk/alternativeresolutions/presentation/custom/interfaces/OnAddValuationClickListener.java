@@ -1,6 +1,6 @@
 package homepunk.alternativeresolutions.presentation.custom.interfaces;
 
-import homepunk.alternativeresolutions.presentation.viewmodels.Criterion;
+import homepunk.alternativeresolutions.presentation.models.Criterion;
 
 /**
  * Created by Homepunk on 13.06.2017.

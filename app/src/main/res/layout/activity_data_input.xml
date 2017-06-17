@@ -4,7 +4,7 @@
     android:id="@+id/criteria_linear_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackgroundLight"
+    android:background="@color/colorBackgroundLightTwo"
     android:orientation="vertical"
     tools:context="homepunk.alternativeresolutions.presentation.activity.DataInputActivity">
 
@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="k13"
+                android:text="@string/not_selected_valuation_text"
                 android:textSize="@dimen/default_small_text_size" />
         </FrameLayout>
 
@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="k13"
+                android:text="@string/not_selected_valuation_text"
                 android:textSize="@dimen/default_small_text_size" />
         </FrameLayout>
     </LinearLayout>
@@ -70,7 +70,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/default_small_margin_padding">
+        android:layout_margin="@dimen/default_margin_padding">
 
         <ImageView
             android:id="@+id/activity_criteria_find_alternates_button"
@@ -82,7 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="ЖОПА"
+            android:text="@string/find_alternates_button"
             android:textColor="@color/colorAccent" />
     </FrameLayout>
 
@@ -90,5 +90,9 @@
         android:id="@+id/activity_criteria_fragment_domination_graph_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></TableLayout>
 
 </LinearLayout>

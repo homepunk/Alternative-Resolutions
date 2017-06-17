@@ -20,8 +20,8 @@ import homepunk.alternativeresolutions.R;
 import homepunk.alternativeresolutions.presentation.custom.adapter.ValuationAdapter;
 import homepunk.alternativeresolutions.presentation.custom.interfaces.OnValuationClickListener;
 import homepunk.alternativeresolutions.presentation.custom.interfaces.SimpleClickListener;
-import homepunk.alternativeresolutions.presentation.viewmodels.Criterion;
-import homepunk.alternativeresolutions.presentation.viewmodels.Valuation;
+import homepunk.alternativeresolutions.presentation.models.Criterion;
+import homepunk.alternativeresolutions.presentation.models.Valuation;
 
 /**
  * Created by Homepunk on 12.06.2017.

@@ -12,7 +12,7 @@ import java.util.List;
 
 import homepunk.alternativeresolutions.R;
 import homepunk.alternativeresolutions.presentation.custom.interfaces.SimpleClickListener;
-import homepunk.alternativeresolutions.presentation.viewmodels.Valuation;
+import homepunk.alternativeresolutions.presentation.models.Valuation;
 
 /**
  * Created by Homepunk on 13.06.2017.
